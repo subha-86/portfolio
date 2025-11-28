@@ -20,7 +20,75 @@
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
       --max-width: 900px;
     }
+    /* --- Navigation Bar Styles --- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    /* Glassmorphism Effect */
+    backdrop-filter: blur(10px); 
+    background: rgba(15, 23, 42, 0.9); /* Slightly transparent dark background */
+    border-bottom: 1px solid var(--border-dark);
+}
 
+.nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0.9rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--fg-light);
+}
+
+.brand span {
+    font-weight: 700;
+    color: var(--accent-violet);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.9rem;
+}
+
+.nav-links a {
+    color: var(--muted-grey);
+    text-decoration: none;
+    padding: 0.2rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--fg-light);
+    border-bottom: 2px solid var(--accent-violet);
+    opacity: 1; /* Override the general link opacity hover */
+}
+
+/* Mobile Adjustments for Nav */
+@media (max-width: 768px) {
+    .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    .brand {
+        margin-bottom: 0.5rem;
+    }
+}
     * {
       box-sizing: border-box;
       /* Apply transition only to transform and shadow for performance */
@@ -100,7 +168,15 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
+    /* FIX: Anchor/Sticky Header Overlap */
+section:before {
+    content: "";
+    display: block;
+    height: 100px; /* Adjust this value: must be slightly more than the header height (e.g., 90px) */
+    margin: -90px 0 0; /* Negate the height */
+    visibility: hidden;
+    pointer-events: none;
+}
     .pill {
       display: inline-flex;
       align-items: center;
@@ -218,6 +294,20 @@
   </style>
 </head>
 <body>
+    <header>
+    <div class="nav-inner">
+        <div class="brand">
+            <span>Subhashini</span> K.M. – Portfolio
+        </div>
+        <nav class="nav-links">
+            <a href="#hero">Focus</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
   <main>
     <section id="hero">
       <p class="pill">
@@ -334,7 +424,7 @@
       </div>
     </section>
 
-    <section id="education">
+    <section id="certifications">
       <h2 class="section-title">Education & Certifications</h2>
       <div class="subtitle">Foundation in IT and commitment to continuous learning.</div>
 
